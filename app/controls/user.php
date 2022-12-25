@@ -14,16 +14,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn'])){
     $repass = trim($_POST['repass']);
 
     if($login === '' || $email === '' || $pass === '' || $repass === ''){
-        $err = "Не все поля заполнены!";
+        $err = "Булочка, не все поля заполнены! 0_0";
     // Получение длины строки в кодировке UTF8
-}elseif (mb_strlen($login, 'UTF8') < 3){
-        $err = "Логин должен быть более 2-х символов";
-    }elseif ($pass !== $pass) {
-        $err = "Пароли в обеих полях должны соответствовать!";
+    }elseif (mb_strlen($login, 'UTF8') < 3){
+        $err = "Приожок, логин должен быть более 2-х символов!!!";
+    }elseif ($pass !== $repass) {
+        $err = "Кексик, пароли в обеих полях должны соответствовать! :(";
+    }elseif (!preg_match("#[0-9]+#", $pass) || !preg_match("#[a-zA-Z]+#", $pass)) {
+        $err = "Ай-ай, пароль должен состоять из 0-9, букв A-Z и a-z!";
     }else{
         $row = selectOne('users', ['email' => $email]);
         if(!empty($row['email']) && $row['email'] === $email){
-            $err = "Пользователь с такой почтой уже зарегистрирован!";
+            $err = "О боже пользователь с такой почтой уже зарегистрирован! ><";
         }else{
             $pass = password_hash($pass, PASSWORD_BCRYPT);
             $post = [
