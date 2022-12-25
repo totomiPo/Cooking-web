@@ -344,3 +344,11 @@ header ul li ul li a{
 .reg_form .sign{
     margin: 10px 0px;
 }
+
+/* Форма регистрации - вывод ошибки */
+
+form div.err p{
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}

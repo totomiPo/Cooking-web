@@ -25,15 +25,20 @@ include ("app/controls/user.php");
       <div class="container reg_form">
           <form class="row justify-content-md-center" method="post" action="reg.php">
               <h2>Регистрация</h2>
+              <!-- Вывод ошибки -->
+              <div class="err mb-3 col-12 col-md-4">
+                  <p><?=$err?></p>
+              </div>
+              <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
                   <label for="formGroupExampleInput" class="form-label">Логин</label>
-                  <input type="text" name="login" class="form-control" id="formGroupExampleInput" placeholder="totomiPo">
+                  <input type="text" name="login" value="<?= $login ?>" class="form-control" id="formGroupExampleInput" placeholder="totomiPo">
               </div>
               <!-- принудительный перенос на следующую строку -->
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
                   <label for="exampleInputEmail1" class="form-label">Email</label>
-                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="totomiPo@mail.com">
+                  <input type="email" name="email"  value="<?= $email ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="totomiPo@mail.com">
                   <div id="emailHelp" class="form-text">К вам не придет спам-рассылка</div>
               </div>
               <div class="w-100"></div>
@@ -48,7 +53,7 @@ include ("app/controls/user.php");
               </div>
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
-                  <button type="submit" class="btn btn-success">Зарегестрироваться</button>
+                  <button type="submit" name="btn" class="btn btn-success">Зарегестрироваться</button>
                   <p class="sign">Уже есть аккаунт?<a href="log.html"> Авторизируйтесь!</a></p>
               </div>
           </form>

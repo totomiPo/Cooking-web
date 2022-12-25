@@ -3,6 +3,7 @@
 session_start();
 require 'connect.php';
 
+// Для вывода результатов - отладка
 function tt($value){
     echo '<pre>';
     print_r($value);
@@ -10,8 +11,9 @@ function tt($value){
     exit();
 }
 
-// Проверка выполнения запроса к БД
-function dbCheckError($query){
+// Проверка на наличие ошибок
+function dbCheck($query){
+    // Ошибка - массив
     $errInfo = $query->errorInfo();
     if ($errInfo[0] !== PDO::ERR_NONE){
         echo $errInfo[2];
@@ -20,14 +22,15 @@ function dbCheckError($query){
     return true;
 }
 
-// Запрос на получение данных с одной таблицы
+// Запрос на получение всех строк из таблицы
 function selectAll($table, $params = []){
     global $pdo;
+    
     $sql = "SELECT * FROM $table";
-
     if(!empty($params)){
         $i = 0;
         foreach ($params as $key => $value){
+            // Если это не число, добаляем скобки
             if (!is_numeric($value)){
                 $value = "'".$value."'";
             }
@@ -39,10 +42,12 @@ function selectAll($table, $params = []){
             $i++;
         }
     }
-
+    // Предварительная подготовка
     $query = $pdo->prepare($sql);
+    // Отправка запроса
     $query->execute();
-    dbCheckError($query);
+    // Проверка на ошибку
+    dbCheck($query);
     // Возврат всех строк
     return $query->fetchAll();
 }
@@ -51,8 +56,8 @@ function selectAll($table, $params = []){
 // Запрос на получение одной строки с выбранной таблицы
 function selectOne($table, $params = []){
     global $pdo;
-    $sql = "SELECT * FROM $table";
 
+    $sql = "SELECT * FROM $table";
     if(!empty($params)){
         $i = 0;
         foreach ($params as $key => $value){
@@ -67,10 +72,9 @@ function selectOne($table, $params = []){
             $i++;
         }
     }
-
     $query = $pdo->prepare($sql);
     $query->execute();
-    dbCheckError($query);
+    dbCheck($query);
     // Возврат одной строки
     return $query->fetch();
 }
@@ -78,8 +82,9 @@ function selectOne($table, $params = []){
 // Запись в таблицу БД
 function insert($table, $params){
     global $pdo;
+
     $i = 0;
-    $coll = ''; // Ключ
+    $coll = ''; // Столбец бд
     $mask = ''; // Значение
     foreach ($params as $key => $value) {
         if ($i === 0){
@@ -93,10 +98,9 @@ function insert($table, $params){
     }
 
     $sql = "INSERT INTO $table ($coll) VALUES ($mask)";
-
     $query = $pdo->prepare($sql);
     $query->execute();
-    dbCheckError($query);
+    dbCheck($query);
     // Возврат ID добавленной записи
     return $pdo->lastInsertId();
 }
@@ -104,8 +108,9 @@ function insert($table, $params){
 // Обновление строки в таблице
 function update($table, $id, $params){
     global $pdo;
+
     $i = 0;
-    $str = '';
+    $str = ''; // Ключ
     foreach ($params as $key => $value) {
         if ($i === 0){
             $str = $str . $key . " = '" . $value . "'";
@@ -118,17 +123,15 @@ function update($table, $id, $params){
     $sql = "UPDATE $table SET $str WHERE id = $id";
     $query = $pdo->prepare($sql);
     $query->execute($params);
-    dbCheckError($query);
-
+    dbCheck($query);
 }
 
-// Обновление строки в таблице
+// Удаление строки в таблице
 function delete($table, $id){
     global $pdo;
-    //DELETE FROM `topics` WHERE id = 3
+
     $sql = "DELETE FROM $table WHERE id =". $id;
     $query = $pdo->prepare($sql);
     $query->execute();
-    dbCheckError($query);
-
+    dbCheck($query);
 }
