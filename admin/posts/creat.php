@@ -28,19 +28,7 @@ include "../../path.php";
 
 <div class="container">
     <div class="row">
-        <div class="sidebar col-3">
-            <ul>
-                <li>
-                    <a href="<?php echo BASE_URL . 'admin/posts/adindex.php'?>">Записи</a>
-                </li>
-                <li>
-                    <a href="#">Пользователи</a>
-                </li>
-                <li>
-                    <a href="#">Разделы</a>
-                </li>
-            </ul>
-        </div>
+        <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
             <div class="button row">
                 <a href="creat.php" class="col-3 btn btn-success">Add post</a>
@@ -52,18 +40,18 @@ include "../../path.php";
             </div>
             <div class="row add-post">
                 <form action="creat.php" method="post">
-                    <div class="col">
+                    <div class="col mb-2">
                         <input type="text" class="form-control" placeholder="Title" aria-label="Название статьи">
                     </div>
                     <div class="col">
-                        <label for="content" class="form-label">Содержание поста</label>
-                        <textarea class="form-control" id="content" rows="6"></textarea>
+                        <label for="editor" class="form-label">Содержание поста</label>
+                        <textarea class="form-control" id="editor" rows="6"></textarea>
                     </div>
-                    <div class="input-group col">
+                    <div class="input-group col mb-2 mt-4">
                         <input type="file" class="form-control" id="inputGroupFile02">
                         <label class="input-group-text" for="inputGroupFile02">Загрузить</label>
                     </div>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select mb-2" aria-label="Default select example">
                         <option selected>Выбрать категроию</option>
                         <option value="1">Кексы</option>
                         <option value="2">Торты</option>
@@ -71,7 +59,7 @@ include "../../path.php";
                         <option value="4">Мороженное</option>
                         <option value="5">Шоколад</option>
                     </select>
-                    <div class="col">
+                    <div class="col mb-2">
                         <button class="btn btn-primary" type="submit">Опубликовать</button>
                     </div>
                 </form>
@@ -89,10 +77,15 @@ include "../../path.php";
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
+<!-- Добавлен плагин для детального редактирования текста -->
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
 <!-- Option 2: Separate Popper and Bootstrap JS -->
 <!--
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 -->
+
+<script src="../../sets/js/script.js"></script>
 </body>
 </html>

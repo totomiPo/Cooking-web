@@ -31,22 +31,29 @@ include "../../path.php";
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
             <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add post</a>
+                <a href="creat.php" class="col-3 btn btn-success">Add</a>
                 <span class="col-1"></span>
-                <a href="adindex.php" class="col-3 btn btn-warning">Manage post</a>
+                <a href="userindex.php" class="col-3 btn btn-warning">Manage</a>
             </div>
             <div class="row title">
-                <h2>Управление записями</h2>
+                <h2>Управление пользователями</h2>
                 <div class="id col-1">ID</div>
-                <div class="title col-5">Title</div>
-                <div class="author col-2">Author</div>
+                <div class="title col-3">Login</div>
+                <div class="author col-2">Admin</div>
                 <div class="red col-2">Change</div>
                 <div class="del col-2">Delete</div>
             </div>
             <div class="row post">
                 <div class="id col-1">1</div>
-                <div class="title col-5">Булочка с изюмом</div>
-                <div class="author col-2">Кексик</div>
+                <div class="title col-3">Булочка с изюмом</div>
+                <div class="author col-2">User</div>
+                <div class="red col-2"><a href="#">Edit</a></div>
+                <div class="del col-2"><a href="#">Delete</a></div>
+            </div>
+            <div class="row post">
+                <div class="id col-1">2</div>
+                <div class="title col-3">Ванилька</div>
+                <div class="author col-2">Admin</div>
                 <div class="red col-2"><a href="#">Edit</a></div>
                 <div class="del col-2"><a href="#">Delete</a></div>
             </div>
