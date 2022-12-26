@@ -18,7 +18,6 @@ include ("app/controls/user.php");
     <title>Kitchen</title>
   </head>
   <body>
-
       <?php include("app/include/header.php"); ?>
 
       <!-- Форма регистрации -->
@@ -53,16 +52,14 @@ include ("app/controls/user.php");
               </div>
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
-                  <button type="submit" name="btn" class="btn btn-success">Зарегестрироваться</button>
-                  <p class="sign">Уже есть аккаунт?<a href="log.html"> Авторизируйтесь!</a></p>
+                  <button type="submit" name="btn-reg" class="btn btn-success">Зарегестрироваться</button>
+                  <p class="sign">Уже есть аккаунт?<a href="log.php"> Авторизируйтесь!</a></p>
               </div>
           </form>
       </div>
 
       <!-- Footer -->
       <?php include("app/include/footer.php"); ?>
-
-
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

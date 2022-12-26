@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require 'connect.php';
 
@@ -25,7 +24,7 @@ function dbCheck($query){
 // Запрос на получение всех строк из таблицы
 function selectAll($table, $params = []){
     global $pdo;
-    
+
     $sql = "SELECT * FROM $table";
     if(!empty($params)){
         $i = 0;

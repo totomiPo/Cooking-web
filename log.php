@@ -1,5 +1,7 @@
-<?php include("path.php");?>
-
+<?php
+include ("path.php");
+include ("app/controls/user.php");
+?>
 
 <!doctype html>
 <html lang="en">
@@ -16,35 +18,34 @@
     <title>Kitchen</title>
   </head>
   <body>
-
       <?php include("app/include/header.php"); ?>
-
-      <!-- Форма регистрации -->
       <div class="container reg_form">
-          <form class="row justify-content-md-center" method="post" action="log.html">
-              <h2>Авторизация</h2>
+          <form class="row justify-content-md-center" method="post" action="log.php">
+              <h2>Вход</h2>
+              <div class="err mb-3 col-12 col-md-4">
+                  <p><?=$err?></p>
+              </div>
+              <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
-                  <label for="formGroupExampleInput" class="form-label">Логин</label>
-                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="totomiPo">
+                  <label for="formGroupExampleInput" class="form-label">E-mail</label>
+                  <input type="email" name="email"  value="<?=$email?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="totomiPo@mail.com">
               </div>
               <!-- принудительный перенос на следующую строку -->
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
                   <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+                  <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
               </div>
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
-                  <button type="button" class="btn btn-success">Войти</button>
-                  <p class="sign">Ещё нет аккаунта??<a href="reg.html"> Зарегестрируйтесь!</a></p>
+                  <button type="submit" name="btn-log" class="btn btn-success">Войти</button>
+                  <p class="sign">Ещё нет аккаунта??<a href="reg.php">Зарегестрируйтесь!</a></p>
               </div>
           </form>
       </div>
 
       <!-- Footer -->
       <?php include("app/include/footer.php"); ?>
-
-
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
