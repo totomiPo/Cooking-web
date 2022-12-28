@@ -31,9 +31,9 @@ include ("../../app/controls/topics.php");
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
             <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add topic</a>
+                <a href="creat.php" class="col-3 btn btn-success">Add</a>
                 <span class="col-1"></span>
-                <a href="topindex.php" class="col-3 btn btn-warning">Manage topic</a>
+                <a href="topindex.php" class="col-3 btn btn-warning">Manage</a>
             </div>
             <div class="row title">
                 <h2>Создание категорию</h2>

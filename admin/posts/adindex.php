@@ -32,9 +32,9 @@ include ("../../app/controls/posts.php");
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
             <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add post</a>
+                <a href="creat.php" class="col-3 btn btn-success">Add</a>
                 <span class="col-1"></span>
-                <a href="adindex.php" class="col-3 btn btn-warning">Manage post</a>
+                <a href="adindex.php" class="col-3 btn btn-warning">Manage</a>
             </div>
             <div class="row title">
                 <h2>Управление записями</h2>
@@ -50,12 +50,12 @@ include ("../../app/controls/posts.php");
                     <div class="id col-1"><?=$key + 1;?></div>
                     <div class="title col-3"><?=$post['title'];?></div>
                     <div class="author col-2"><?=$post['username'];?></div>
-                    <div class="red col-2"><a href="#">Edit</a></div>
-                    <div class="del col-2"><a href="#">Delete</a></div>
+                    <div class="red col-2"><a href="edit.php?id=<?=$post['id']?>">Edit</a></div>
+                    <div class="del col-2"><a href="edit.php?delid=<?=$post['id']?>">Delete</a></div>
                     <?php if ($post['status']): ?>
-                        <div class="status col-2"><a href="#">Draft</a></div>
+                        <div class="status col-2"><a href="edit.php?publish=0&pubid=<?=$post['id']?>">Draft</a></div>
                     <?php else: ?>
-                        <div class="status col-2"><a href="#">Publish</a></div>
+                        <div class="status col-2"><a href="edit.php?publish=1&pubid=<?=$post['id']?>">Publish</a></div>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>

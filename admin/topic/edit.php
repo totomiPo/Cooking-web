@@ -31,17 +31,12 @@ include "../../app/controls/topics.php";
     <div class="row">
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
-            <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add</a>
-                <span class="col-1"></span>
-                <a href="topindex.php" class="col-3 btn btn-warning">Manage</a>
-            </div>
             <div class="row title">
                 <h2>Создание категорию</h2>
             </div>
             <div class="row add-post">
                 <div class="err col-12 col-md-8">
-                    <p><?=$err?></p>
+                    <?php include ("../../app/help/err.php"); ?>
                 </div>
                 <form action="edit.php" method="post">
                     <input name="id" value="<?=$id?>" type="hidden">

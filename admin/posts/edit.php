@@ -31,19 +31,15 @@ include ("../../app/controls/posts.php");
     <div class="row">
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
-            <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add post</a>
-                <span class="col-1"></span>
-                <a href="adindex.php" class="col-3 btn btn-warning">Manage post</a>
-            </div>
             <div class="row title">
-                <h2>Добавление записи</h2>
+                <h2>Редактирование записи</h2>
             </div>
             <div class="err col-12">
                 <?php include ("../../app/help/err.php"); ?>
             </div>
             <div class="row add-post">
-                <form action="creat.php" method="post" enctype="multipart/form-data">
+                <form action="edit.php" method="post" enctype="multipart/form-data">
+                    <input name="id" value="<?=$id?>" type="hidden">
                     <div class="col mb-2">
                         <input type="text" name="title" value="<?=$title?>" class="form-control" placeholder="Title" aria-label="Название статьи">
                     </div>
@@ -56,19 +52,25 @@ include ("../../app/controls/posts.php");
                         <label class="input-group-text" for="inputGroupFile02">Загрузить</label>
                     </div>
                     <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                        <option selected>Выбрать категроию</option>
                         <?php foreach ($topics as $key => $topic): ?>
                         <option value="<?=$topic['id'];?>"><?=$topic['name'];?></option>
                         <?php endforeach; ?>
                     </select>
                     <div class="form-check">
-                        <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Publish
-                        </label>
+                        <?php if (empty($publish) || $publish === 0): ?>
+                            <input name="publish" class="form-check-input" type="checkbox" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Publish
+                            </label>
+                        <?php else: ?>
+                            <input name="publish" class="form-check-input" type="checkbox" id="flexCheckChecked" checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Publish
+                            </label>
+                        <?php endif;?>
                     </div>
                     <div class="col col-6">
-                        <button class="btn btn-primary" name="addpost" type="submit">Добавить запись</button>
+                        <button class="btn btn-primary" name="edpost" type="submit">Изменить</button>
                     </div>
                 </form>
             </div>
