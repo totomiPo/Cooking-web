@@ -241,3 +241,11 @@ header ul li ul li a{
 .add-post form div{
     margin: 20px 0px;
 }
+
+/* Вывод ошибки */
+
+.row .err p{
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}

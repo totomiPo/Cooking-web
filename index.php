@@ -1,8 +1,7 @@
 <?php
 include("path.php");
-include("app/database/db.php");
+include ("app/controls/topics.php");
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -133,11 +132,9 @@ include("app/database/db.php");
                   <div class="section topics">
                       <h3>Категории</h3>
                       <ul>
-                          <li><a href="#">Торты</a></li>
-                          <li><a href="#">Кексы</a></li>
-                          <li><a href="#">Мороженное</a></li>
-                          <li><a href="#">Пироги</a></li>
-                          <li><a href="#">Шоколад</a></li>
+                          <?php foreach ($topics as $key => $topic): ?>
+                              <li><a href="#"><?= $topic['name']; ?></a></li>
+                          <?php endforeach; ?>
                       </ul>
                   </div>
               </div>

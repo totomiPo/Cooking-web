@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../../path.php";
+include "../../app/controls/topics.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,16 +40,19 @@ include "../../path.php";
                 <h2>Создание категорию</h2>
             </div>
             <div class="row add-post">
+                <div class="err col-12 col-md-8">
+                    <p><?=$err?></p>
+                </div>
                 <form action="creat.php" method="post">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Название категории">
+                        <input name="name" value="<?=$name?>" type="text" class="form-control" placeholder="Title" aria-label="Название категории">
                     </div>
                     <div class="col">
                         <label for="content" class="form-label">Описание категории</label>
-                        <textarea class="form-control" id="content" rows="6"></textarea>
+                        <textarea name="discr" class="form-control" id="content" rows="6"><?=$discr?></textarea>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary" type="submit">Создать</button>
+                        <button name="topcr" class="btn btn-primary" type="submit">Создать</button>
                     </div>
                 </form>
             </div>

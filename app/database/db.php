@@ -34,9 +34,9 @@ function selectAll($table, $params = []){
                 $value = "'".$value."'";
             }
             if ($i === 0){
-                $sql = $sql . " WHERE $key=$value";
+                $sql = $sql . " WHERE $key = $value";
             }else{
-                $sql = $sql . " AND $key=$value";
+                $sql = $sql . " AND $key = $value";
             }
             $i++;
         }
@@ -64,9 +64,9 @@ function selectOne($table, $params = []){
                 $value = "'".$value."'";
             }
             if ($i === 0){
-                $sql = $sql . " WHERE $key=$value";
+                $sql = $sql . " WHERE $key = $value";
             }else{
-                $sql = $sql . " AND $key=$value";
+                $sql = $sql . " AND $key = $value";
             }
             $i++;
         }
@@ -121,7 +121,7 @@ function update($table, $id, $params){
 
     $sql = "UPDATE $table SET $str WHERE id = $id";
     $query = $pdo->prepare($sql);
-    $query->execute($params);
+    $query->execute();
     dbCheck($query);
 }
 

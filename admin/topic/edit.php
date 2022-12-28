@@ -1,8 +1,7 @@
 <?php
 session_start();
-include ("../../path.php");
-include ("../../app/controls/topics.php");
-
+include "../../path.php";
+include "../../app/controls/topics.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,20 +37,26 @@ include ("../../app/controls/topics.php");
                 <a href="topindex.php" class="col-3 btn btn-warning">Manage</a>
             </div>
             <div class="row title">
-                <h2>Управление категориями</h2>
-                <div class="id col-1">ID</div>
-                <div class="title col-5">Title</div>
-                <div class="red col-2">Change</div>
-                <div class="del col-2">Delete</div>
+                <h2>Создание категорию</h2>
             </div>
-            <?php foreach ($topics as $key => $topic): ?>
-            <div class="row post">
-                <div class="id col-1"><?= $key + 1 ?></div>
-                <div class="title col-5"><?= $topic['name']; ?></div>
-                <div class="red col-2"><a href="edit.php?id=<?=$topic['id'];?>">Edit</a></div>
-                <div class="del col-2"><a href="edit.php?delid=<?=$topic['id'];?>">Delete</a></div>
+            <div class="row add-post">
+                <div class="err col-12 col-md-8">
+                    <p><?=$err?></p>
+                </div>
+                <form action="edit.php" method="post">
+                    <input name="id" value="<?=$id?>" type="hidden">
+                    <div class="col">
+                        <input name="name" value="<?=$name?>" type="text" class="form-control" placeholder="Title" aria-label="Название категории">
+                    </div>
+                    <div class="col">
+                        <label for="content" class="form-label">Описание категории</label>
+                        <textarea name="discr" class="form-control" id="content" rows="6"><?=$discr?></textarea>
+                    </div>
+                    <div class="col">
+                        <button name="toped" class="btn btn-primary" type="submit">Обновить</button>
+                    </div>
+                </form>
             </div>
-            <?php endforeach; ?>
         </div>
     </div>
 </div>
