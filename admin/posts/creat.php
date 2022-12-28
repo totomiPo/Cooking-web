@@ -1,6 +1,7 @@
 <?php
-session_start();
-include "../../path.php";
+include ("../../path.php");
+include ("../../app/controls/posts.php");
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,29 +39,30 @@ include "../../path.php";
             <div class="row title">
                 <h2>Добавление записи</h2>
             </div>
+            <div class="err col-12">
+                <p><?=$err?></p>
+            </div>
             <div class="row add-post">
                 <form action="creat.php" method="post">
                     <div class="col mb-2">
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Название статьи">
+                        <input type="text" name="title" class="form-control" placeholder="Title" aria-label="Название статьи">
                     </div>
                     <div class="col">
                         <label for="editor" class="form-label">Содержание поста</label>
-                        <textarea class="form-control" id="editor" rows="6"></textarea>
+                        <textarea name="content" class="form-control" id="editor" rows="6"></textarea>
                     </div>
                     <div class="input-group col mb-2 mt-4">
-                        <input type="file" class="form-control" id="inputGroupFile02">
+                        <input type="file" name="imagename" class="form-control" id="inputGroupFile02">
                         <label class="input-group-text" for="inputGroupFile02">Загрузить</label>
                     </div>
-                    <select class="form-select mb-2" aria-label="Default select example">
+                    <select name="topic" class="form-select mb-2" aria-label="Default select example">
                         <option selected>Выбрать категроию</option>
-                        <option value="1">Кексы</option>
-                        <option value="2">Торты</option>
-                        <option value="3">Пироги</option>
-                        <option value="4">Мороженное</option>
-                        <option value="5">Шоколад</option>
+                        <?php foreach ($topics as $key => $topic): ?>
+                        <option value="<?=$topic['id'];?>"><?=$topic['name'];?></option>
+                        <?php endforeach; ?>
                     </select>
                     <div class="col mb-2">
-                        <button class="btn btn-primary" type="submit">Опубликовать</button>
+                        <button class="btn btn-primary" name="addpost" type="submit">Добавить запись</button>
                     </div>
                 </form>
             </div>

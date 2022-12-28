@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "../../path.php";
 include "../../app/controls/topics.php";
 ?>
@@ -39,10 +38,10 @@ include "../../app/controls/topics.php";
             <div class="row title">
                 <h2>Создание категорию</h2>
             </div>
+            <div class="err col-12">
+                <p><?=$err?></p>
+            </div>
             <div class="row add-post">
-                <div class="err col-12 col-md-8">
-                    <p><?=$err?></p>
-                </div>
                 <form action="creat.php" method="post">
                     <div class="col">
                         <input name="name" value="<?=$name?>" type="text" class="form-control" placeholder="Title" aria-label="Название категории">
