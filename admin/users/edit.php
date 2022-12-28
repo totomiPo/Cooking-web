@@ -37,26 +37,37 @@ include ("../../app/controls/user.php");
                 <a href="userindex.php" class="col-3 btn btn-warning">Manage</a>
             </div>
             <div class="row title">
-                <h2>Пользователи</h2>
-                <div class="id col-1">ID</div>
-                <div class="title col-3">Login</div>
-                <div class="author col-2">Admin</div>
-                <div class="red col-2">Change</div>
-                <div class="del col-2">Delete</div>
+                <h2>Изменение данных пользователя</h2>
             </div>
-            <?php foreach($users as $key => $user): ?>
-            <div class="row post">
-                <div class="id col-1"><?=$user['id'];?></div>
-                <div class="title col-3"><?=$user['username'];?></div>
-                <?php if ($user['admin'] === 1 ): ?>
-                    <div class="author col-2">Admin</div>
-                <?php else: ?>
-                    <div class="author col-2">User</div>
-                <?php endif; ?>
-                <div class="red col-2"><a href="edit.php?edid=<?= $user['id']; ?>">Edit</a></div>
-                <div class="del col-2"><a href="edit.php?delid=<?= $user['id']; ?>">Delete</a></div>
+            <div class="err col-12">
+                <?php include ("../../app/help/err.php"); ?>
             </div>
-        <?php endforeach;?>
+            <div class="row add-post">
+                <form action="edit.php" method="post">
+                    <input name="id" value="<?=$id?>" type="hidden">
+                    <div class="col">
+                        <label for="formGroupExampleInput" class="form-label">Login</label>
+                        <input type="text" name="login" value="<?= $username; ?>" class="form-control" id="formGroupExampleInput" placeholder="totomiPo">
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputPassword2" class="form-label">Confirm password</label>
+                        <input type="password" name="repass" class="form-control" id="exampleInputPassword2" placeholder="Повторите пароль">
+                    </div>
+                    <div class="form-check">
+                        <input name="admin" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Admin
+                        </label>
+                    </div>
+                    <div class="col">
+                        <button name="upduser" class="btn btn-primary" type="submit">Сохранить</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

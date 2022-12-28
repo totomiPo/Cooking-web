@@ -22,8 +22,8 @@ include ("app/controls/user.php");
       <div class="container reg_form">
           <form class="row justify-content-md-center" method="post" action="log.php">
               <h2>Вход</h2>
-              <div class="err mb-3 col-12 col-md-4">
-                  <p><?=$err?></p>
+              <div class="err col-12">
+                <?php include ("app/help/err.php"); ?>
               </div>
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">

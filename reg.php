@@ -25,8 +25,8 @@ include ("app/controls/user.php");
           <form class="row justify-content-md-center" method="post" action="reg.php">
               <h2>Регистрация</h2>
               <!-- Вывод ошибки -->
-              <div class="err mb-3 col-12 col-md-4">
-                  <p><?=$err?></p>
+              <div class="err col-12">
+                <?php include ("app/help/err.php"); ?>
               </div>
               <div class="w-100"></div>
               <div class="mb-3 col-12 col-md-4">
