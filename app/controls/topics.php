@@ -1,7 +1,7 @@
 <?php
 include SITE_ROOT . "/app/database/db.php";
 
-$err = '';
+$err = [];
 $topics = selectAll('topics');
 // Создание категории
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topcr'])){
@@ -9,13 +9,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topcr'])){
     $discr = trim($_POST['discr']);
 
     if($name === '' || $discr === ''){
-        $err = "Булочка, не все поля заполнены! 0_0";
+        array_push($err, "Булочка, не все поля заполнены! 0_0");
     }elseif (mb_strlen($name, 'UTF8') < 3){
-        $err = "Приожок, категория должена быть более 2-х символов!!!";
+        array_push($err, "Приожок, категория должена быть более 2-х символов!!!");
     }else{
         $row = selectOne('topics', ['name' => $name]);
         if(!empty($row['name']) && $row['name'] === $name){
-            $err = "Такая категория существует!";
+            array_push($err, "Такая категория существует!");
         }else{
             $topic = [
                 'name' => $name,
@@ -50,9 +50,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toped'])){
     $discr = trim($_POST['discr']);
 
     if($name === '' || $discr === ''){
-        $err = "Булочка, не все поля заполнены! 0_0";
+        array_push($err, "Булочка, не все поля заполнены! 0_0");
     }elseif (mb_strlen($name, 'UTF8') < 3){
-        $err = "Приожок, категория должена быть более 2-х символов!!!";
+        array_push($err, "Приожок, категория должена быть более 2-х символов!!!");
     }else{
         $topic = [
             'name' => $name,

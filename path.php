@@ -3,4 +3,7 @@
 define('BASE_URL', 'http://curs/');
 // Абсолютный путь к файлу
 const SITE_ROOT = __DIR__;
+// ROOT_PATH - путь до домена сайта
+// realpath - приводит к каноническому виду (ликвидация ../, конечных /)
+// dirname - возвращение имя род каталога из указ. пути (файловая система)
 define("ROOT_PATH", realpath(dirname(__FILE__)));

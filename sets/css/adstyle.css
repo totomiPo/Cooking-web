@@ -249,3 +249,19 @@ header ul li ul li a{
     text-align: center;
     font-size: 18px;
 }
+
+.posts .err{
+    padding: 15px 0px;
+    color: red;
+}
+
+.posts .err ul{
+    list-style-type: none;
+    color: red;
+    padding-left: 10px;
+}
+
+.posts .err li{
+    font-weight: 700px;
+    margin: 5px 0px;
+}

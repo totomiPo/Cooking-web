@@ -1,6 +1,6 @@
 <?php
-include "../../path.php";
-include "../../app/controls/topics.php";
+include ("../../path.php");
+include ("../../app/controls/topics.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,7 +39,7 @@ include "../../app/controls/topics.php";
                 <h2>Создание категорию</h2>
             </div>
             <div class="err col-12">
-                <p><?=$err?></p>
+                <?php include ("../../app/help/err.php"); ?>
             </div>
             <div class="row add-post">
                 <form action="creat.php" method="post">

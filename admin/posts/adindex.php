@@ -1,6 +1,7 @@
 <?php
-session_start();
-include "../../path.php";
+include ("../../path.php");
+include ("../../app/controls/posts.php");
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -38,18 +39,26 @@ include "../../path.php";
             <div class="row title">
                 <h2>Управление записями</h2>
                 <div class="id col-1">ID</div>
-                <div class="title col-5">Title</div>
+                <div class="title col-3">Title</div>
                 <div class="author col-2">Author</div>
                 <div class="red col-2">Change</div>
                 <div class="del col-2">Delete</div>
+                <div class="status col-2">Разработка</div>
             </div>
-            <div class="row post">
-                <div class="id col-1">1</div>
-                <div class="title col-5">Булочка с изюмом</div>
-                <div class="author col-2">Кексик</div>
-                <div class="red col-2"><a href="#">Edit</a></div>
-                <div class="del col-2"><a href="#">Delete</a></div>
-            </div>
+            <?php foreach ($postAdmin as $key => $post): ?>
+                <div class="row post">
+                    <div class="id col-1"><?=$key + 1;?></div>
+                    <div class="title col-3"><?=$post['title'];?></div>
+                    <div class="author col-2"><?=$post['username'];?></div>
+                    <div class="red col-2"><a href="#">Edit</a></div>
+                    <div class="del col-2"><a href="#">Delete</a></div>
+                    <?php if ($post['status']): ?>
+                        <div class="status col-2"><a href="#">Draft</a></div>
+                    <?php else: ?>
+                        <div class="status col-2"><a href="#">Publish</a></div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
