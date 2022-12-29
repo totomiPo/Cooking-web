@@ -150,10 +150,11 @@ function selectALLFromPostUsers($table1, $table2){
 }
 
 // Получнеие имени автора статьи на главную страницу
-function selectALLFromPostUsersIndex($table1, $table2){
+function selectALLFromPostUsersIndex($table1, $table2, $lim, $offset){
     global $pdo;
 
-    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.iduser = u.id WHERE p.status = 1";
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.iduser = u.id
+    WHERE p.status = 1 LIMIT $lim OFFSET $offset";
 
     $query = $pdo->prepare($sql);
     $query->execute();
@@ -203,4 +204,27 @@ function selectPostOnSingle($table1, $table2, $id){
     $query->execute();
     dbCheck($query);
     return $query->fetch();
+}
+
+function selectCtgFromPostUsersIndex($table1, $table2, $id){
+    global $pdo;
+
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.iduser = u.id WHERE p.status = 1 AND p.idtopic = $id";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheck($query);
+    return $query->fetchAll();
+}
+
+// Подсет кол-ва строк в таблице
+function countRow($table){
+    global $pdo;
+
+    $sql = "SELECT COUNT(*) FROM $table WHERE status = 1";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheck($query);
+    return $query->fetchColumn();
 }

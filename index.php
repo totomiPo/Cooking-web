@@ -1,9 +1,18 @@
 <?php
 include("path.php");
 include ("app/controls/topics.php");
+
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+$lim = 5;
+$offset = $lim * ($page - 1);
+// общее кол-во страниц
+$tpage = ceil((countRow('posts') / $lim));
+
 // Выбор статей со статусом опубликовано
-$posts = selectALLFromPostUsersIndex('posts', 'users');
+$posts = selectALLFromPostUsersIndex('posts', 'users', $lim, $offset);
 $toppost = selectTopTopicIndex('posts');
+
 ?>
 
 <!doctype html>
@@ -84,7 +93,7 @@ $toppost = selectTopTopicIndex('posts');
                               }?></a></h3>
                               <i class="far fa-user"> <?= $post['username']?> </i>
                               <i class="far fa-calendar"> <?= $post['crdate']?> </i>
-                              <p class="preview-text"><?= mb_substr($post['content'], 0, 60, 'UTF-8') . '...'?></p>
+                              <p class="preview-text"><?= mb_substr($post['content'], 0, 200, 'UTF-8') . '...'?></p>
                               <div class="topic">
                                   <p>Категория: <?php
                                   $topic = selectOne('topics', ['id' => $post['idtopic']]);
@@ -93,6 +102,8 @@ $toppost = selectTopTopicIndex('posts');
                           </div>
                       </div>
               <?php endforeach; ?>
+              <!-- Навигация -->
+              <?php include("app/include/pagi.php"); ?>
               </div>
               <div class="sidebar col-md-3 col-12">
                   <div class="section search">
@@ -105,7 +116,9 @@ $toppost = selectTopTopicIndex('posts');
                       <h3>Категории</h3>
                       <ul>
                           <?php foreach ($topics as $key => $topic): ?>
-                              <li><a href="#"><?= $topic['name']; ?></a></li>
+                              <?php if ($topic['name'] !== 'Top topics'): ?>
+                                  <li><a href="<?= BASE_URL. "category.php?id=" . $topic['id']; ?>"><?= $topic['name']; ?></a></li>
+                              <?php endif; ?>
                           <?php endforeach; ?>
                       </ul>
                   </div>

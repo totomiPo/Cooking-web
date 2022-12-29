@@ -31,11 +31,6 @@ include ("../../app/controls/posts.php");
     <div class="row">
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
-            <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add post</a>
-                <span class="col-1"></span>
-                <a href="adindex.php" class="col-3 btn btn-warning">Manage post</a>
-            </div>
             <div class="row title">
                 <h2>Добавление записи</h2>
             </div>

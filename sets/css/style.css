@@ -347,10 +347,24 @@ header ul li ul li a{
 
 /* Форма регистрации - вывод ошибки */
 
-form div.err p{
+/* Вывод ошибки */
+
+.row .err{
+    padding: 15px 0px;
     color: red;
     text-align: center;
     font-size: 18px;
+}
+
+.row .err ul{
+    list-style-type: none;
+    color: red;
+    padding-left: 10px;
+}
+
+.row .err li{
+    font-weight: 700px;
+    margin: 5px 0px;
 }
 
 /* Результаты поиска */
@@ -361,4 +375,20 @@ form div.err p{
     text-align: center;
     font-size: 24px;
 
+}
+
+/* Описание категорий */
+
+.content .discr{
+    margin: 20px 20px;
+    padding: 10px;
+    border: 2px solid #2b0e00;
+    text-align: justify;
+    font-size: 18px;
+    background-color: #ffe8d6;
+    border-radius: 10px;
+}
+
+.content h2{
+    text-align: center;
 }

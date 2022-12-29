@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-reg'])){
         $err = "Булочка, не все поля заполнены! 0_0";
     // Получение длины строки в кодировке UTF8
     }elseif (mb_strlen($login, 'UTF8') < 3){
-        array_push("Приожок, логин должен быть более 2-х символов!!!");
+        array_push($err, "Приожок, логин должен быть более 2-х символов!!!");
     }elseif ($pass !== $repass) {
         array_push($err, "Кексик, пароли в обеих полях должны соответствовать! :(");
     }elseif (!preg_match("#[0-9]+#", $pass) || !preg_match("#[a-zA-Z]+#", $pass)) {

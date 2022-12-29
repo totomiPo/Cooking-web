@@ -43,7 +43,7 @@ $post = selectPostOnSingle('posts', 'users', $_GET['post']);
               <div class="sidebar col-md-3 col-12">
                   <div class="section search">
                       <h3>Поиск</h3>
-                      <form action="/" method="post">
+                      <form action="search.php" method="post">
                           <input type="text" name="search-term" class="text-input" placeholder="Поиск" />
                       </form>
                   </div>
@@ -51,7 +51,9 @@ $post = selectPostOnSingle('posts', 'users', $_GET['post']);
                       <h3>Категории</h3>
                       <ul>
                           <?php foreach ($topics as $key => $topic): ?>
-                              <li><a href="#"><?= $topic['name']; ?></a></li>
+                              <?php if ($topic['name'] !== 'Top topics'): ?>
+                                  <li><a href="<?= BASE_URL. "category.php?id=" . $topic['id']; ?>"><?= $topic['name']; ?></a></li>
+                              <?php endif; ?>
                           <?php endforeach; ?>
                       </ul>
                   </div>

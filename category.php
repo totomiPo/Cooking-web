@@ -1,7 +1,11 @@
-<?php include("path.php");
+<?php
+include("path.php");
 include ("app/controls/topics.php");
+// Выбор статей со статусом опубликовано
+$posts = selectCtgFromPostUsersIndex('posts', 'users', $_GET['id']);
+$toppost = selectTopTopicIndex('posts');
+$ctg = selectOne('topics', ['id' => $_GET['id']]);
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -19,27 +23,41 @@ include ("app/controls/topics.php");
   </head>
   <body>
 
-      <?php include("app/include/header.php"); ?>
-
+      <?php
+      // При возникновении ошибки,продлжит выполнение скрипта
+      include("app/include/header.php");
+      ?>
       <div class="container">
           <div class="content row">
               <div class="main-content col-md-9 col-12">
-                  <h2>Готовую булочку не испечь заново.</h2>
-                  <div class="single_post row">
-                      <div class="img col-12">
-                          <img src="sets/img/cafe.jpg" alt="" class="img-thumbnail" style="width: 80%;" />
-                      </div>
-                      <div class="single_post_text col-12">
-                          <p class="preview-text">
-                              Этот сайт поможет найти вам подходящие рецепты выпечки, мороженного и шоколадных изделий.
-                              Также вы сможете познакомиться с расположением различных булочных в вашем городе.
-                          </p>
-                          <p class="preview-text">
-                              Если вы захотите приготовить дома очень вкусный кекс или классический круасан, как во Франции, то наши
-                              рецепты из каталога вам помогут. Все рецепты из доступных продуктов, дерзайте!
-                          </p>
-                      </div>
+                  <h2><?= $ctg['name']; ?></h2>
+                  <div class="discr">
+                      <?= $ctg['discr']; ?>
                   </div>
+                  <?php foreach ($posts as $post): ?>
+                      <div class="post row">
+                          <div class="img col-12 col-md-4">
+                              <img src="<?= BASE_URL . "sets/img/post/" . $post['img']?>" alt="<?= $post['title']?>" class="img-thumbnail" />
+                          </div>
+                          <div class="post_text col-12 col-md-8">
+                              <h3><a href="<?= BASE_URL. "single.php?post=" . $post['id'];?>">
+                              <?php if (strlen($post['title']) < 80){
+                                  echo $post['title'];
+                              } else {
+                                  $str = mb_substr($post['title'], 0, 80,'UTF-8');
+                                  echo $str . "...";
+                              }?></a></h3>
+                              <i class="far fa-user"> <?= $post['username']?> </i>
+                              <i class="far fa-calendar"> <?= $post['crdate']?> </i>
+                              <p class="preview-text"><?= mb_substr($post['content'], 0, 200, 'UTF-8') . '...'?></p>
+                              <div class="topic">
+                                  <p>Категория: <?php
+                                  $topic = selectOne('topics', ['id' => $post['idtopic']]);
+                                  echo $topic['name'];?></p>
+                              </div>
+                          </div>
+                      </div>
+              <?php endforeach; ?>
               </div>
               <div class="sidebar col-md-3 col-12">
                   <div class="section search">
