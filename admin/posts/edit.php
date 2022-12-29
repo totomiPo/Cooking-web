@@ -47,10 +47,10 @@ include ("../../app/controls/posts.php");
                         <label for="editor" class="form-label">Содержание поста</label>
                         <textarea name="content" class="form-control" id="editor" rows="6"><?=$content?></textarea>
                     </div>
-                    <div class="input-group col mb-2 mt-4">
-                        <input type="file" name="img" class="form-control" id="inputGroupFile02">
-                        <label class="input-group-text" for="inputGroupFile02">Загрузить</label>
-                    </div>
+                    <!--<div class="input-group col mb-2 mt-4">-->
+                    <!--    <input type="file" name="img" class="form-control" id="inputGroupFile02">-->
+                    <!--    <label class="input-group-text" for="inputGroupFile02">Загрузить</label>-->
+                    <!--</div>-->
                     <select name="topic" class="form-select mb-2" aria-label="Default select example">
                         <?php foreach ($topics as $key => $topic): ?>
                         <option value="<?=$topic['id'];?>"><?=$topic['name'];?></option>

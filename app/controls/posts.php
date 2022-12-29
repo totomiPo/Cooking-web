@@ -91,26 +91,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edpost'])){
     // Проверка на чекбоксе
     $publish = trim($_POST['status']) !== null ? 1 : 0;
 
-    if (!empty($_FILES['img']['name'])){
-        $imgname = time() . $_FILES['img']['name'];
-        $imgtype = $_FILES['img']['type'];
-        $tmpf = $_FILES['img']['tmp_name'];
-        $destin = ROOT_PATH . "\sets\img\post\\" . $imgname;
-
-        if (strpos($imgtype, 'image') === false){
-            array_push($err, "Файл не является изображением");
-        } else {
-            $res = move_uploaded_file($tmpf, $destin);
-            if($res){
-                $_POST['img'] = $imgname;
-            } else {
-                array_push($err,"Ошибка загрузки изображения");
-            }
-        }
-    } else {
-        array_push($err,"Ошибка получения картинки!");
-    }
-
     if($title === '' || $content === '' || $topic === ''){
         array_push($err,"Булочка, не все поля заполнены! 0_0");
     }elseif (mb_strlen($title, 'UTF8') < 8){
@@ -119,7 +99,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edpost'])){
         $post = [
             'iduser' => $_SESSION['id'],
             'title' => $title,
-            'img' => $_POST['img'],
             'content' => $content,
             'status' => $publish,
             'idtopic' => $topic

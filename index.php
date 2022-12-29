@@ -93,7 +93,7 @@ $toppost = selectTopTopicIndex('posts');
                               }?></a></h3>
                               <i class="far fa-user"> <?= $post['username']?> </i>
                               <i class="far fa-calendar"> <?= $post['crdate']?> </i>
-                              <p class="preview-text"><?= mb_substr($post['content'], 0, 200, 'UTF-8') . '...'?></p>
+                              <p class="preview-text"><?= mb_substr($post['content'], 0, 150, 'UTF-8') . '...'?></p>
                               <div class="topic">
                                   <p>Категория: <?php
                                   $topic = selectOne('topics', ['id' => $post['idtopic']]);
