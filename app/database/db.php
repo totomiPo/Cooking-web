@@ -148,3 +148,46 @@ function selectALLFromPostUsers($table1, $table2){
     dbCheck($query);
     return $query->fetchAll();
 }
+
+// Получнеие имени автора статьи на главную страницу
+function selectALLFromPostUsersIndex($table1, $table2){
+    global $pdo;
+
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.iduser = u.id WHERE p.status = 1";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheck($query);
+    return $query->fetchAll();
+}
+
+function selectTopTopicIndex($table1){
+    global $pdo;
+
+    $sql = "SELECT * FROM $table1 WHERE idtopic = 8";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheck($query);
+    return $query->fetchAll();
+}
+
+// Поиск по заголовкам и содержимому
+function searchTitleContent($text, $table1, $table2){
+    global $pdo;
+    // strip_tags -
+    // stripcslashes -
+    // htmlspecialchars -
+    $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
+
+    $sql = "SELECT p.*, u.username
+    FROM $table1 AS p
+    JOIN $table2 AS u ON p.iduser = u.id
+    WHERE p.status = 1
+    AND p.title LIKE '%$text%' OR p.content LIKE '%$text%'";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheck($query);
+    return $query->fetchAll();
+}

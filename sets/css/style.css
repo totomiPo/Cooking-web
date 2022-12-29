@@ -352,3 +352,13 @@ form div.err p{
     text-align: center;
     font-size: 18px;
 }
+
+/* Результаты поиска */
+
+.main-content .undef{
+    min-height: 220px;
+    margin: 30px 30px;
+    text-align: center;
+    font-size: 24px;
+
+}

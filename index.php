@@ -1,6 +1,9 @@
 <?php
 include("path.php");
 include ("app/controls/topics.php");
+// Выбор статей со статусом опубликовано
+$posts = selectALLFromPostUsersIndex('posts', 'users');
+$toppost = selectTopTopicIndex('posts');
 ?>
 
 <!doctype html>
@@ -31,25 +34,26 @@ include ("app/controls/topics.php");
           </div>
           <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                      <img src="sets/img/cake.png" class="d-block w-100" alt="...">
-                      <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                          <h5><a href="#">Ванильно-шоколадный кекс</a></h5>
-                      </div>
-                  </div>
-                  <div class="carousel-item">
-                      <img src="sets/img/cinnam.png" class="d-block w-100" alt="...">
-                      <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                          <h5><a href="#">Синнамон с корицей</a></h5>
-                      </div>
-                  </div>
-                  <div class="carousel-item">
-                      <img src="sets/img/crois.png" class="d-block w-100" alt="...">
-                      <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                          <h5><a href="#">Круассан классический</a></h5>
-                      </div>
-                  </div>
+                  <?php foreach ($toppost as $key => $post): ?>
+                      <?php if($key === 0): ?>
+                          <div class="carousel-item active">
+                      <?php else: ?>
+                          <div class="carousel-item">
+                      <?php endif; ?>
+                          <img src="<?= BASE_URL . "sets/img/post/" . $post['img']?>" class="d-block w-100" alt="<?= $post['title']?>">
+                          <div class="carousel-caption-hack carousel-caption d-none d-md-block">
+                              <h5><a href="<?= BASE_URL. "single.php?post=" . $post['id'];?>">
+                                  <?php if (strlen($post['title']) < 80){
+                                      echo $post['title'];
+                                  } else {
+                                      $str = mb_substr($post['title'], 0, 80,'UTF-8');
+                                      echo $str . "...";
+                                  }?></a></h5>
+                              </div>
+                          </div>
+                   <?php endforeach; ?>
               </div>
+
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
@@ -65,67 +69,35 @@ include ("app/controls/topics.php");
           <div class="content row">
               <div class="main-content col-md-9 col-12">
                   <h2>Последние публикации</h2>
-                  <div class="post row">
-                      <div class="img col-12 col-md-4">
-                          <img src="sets/img/cinnam.png" alt="" class="img-thumbnail" />
+                  <?php foreach ($posts as $post): ?>
+                      <div class="post row">
+                          <div class="img col-12 col-md-4">
+                              <img src="<?= BASE_URL . "sets/img/post/" . $post['img']?>" alt="<?= $post['title']?>" class="img-thumbnail" />
+                          </div>
+                          <div class="post_text col-12 col-md-8">
+                              <h3><a href="<?= BASE_URL. "single.php?post=" . $post['id'];?>">
+                              <?php if (strlen($post['title']) < 80){
+                                  echo $post['title'];
+                              } else {
+                                  $str = mb_substr($post['title'], 0, 80,'UTF-8');
+                                  echo $str . "...";
+                              }?></a></h3>
+                              <i class="far fa-user"> <?= $post['username']?> </i>
+                              <i class="far fa-calendar"> <?= $post['crdate']?> </i>
+                              <p class="preview-text"><?= mb_substr($post['content'], 0, 60, 'UTF-8') . '...'?></p>
+                              <div class="topic">
+                                  <p>Категория: <?php
+                                  $topic = selectOne('topics', ['id' => $post['idtopic']]);
+                                  echo $topic['name'];?></p>
+                              </div>
+                          </div>
                       </div>
-                      <div class="post_text col-12 col-md-8">
-                          <h3><a href="#">Рецепт булочки с корицей</a></h3>
-                          <i class="far fa-user"> Имя автора </i>
-                          <i class="far fa-calendar"> Май 12, 2022 </i>
-                          <p class="preview-text">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </p>
-                      </div>
-                  </div>
-                  <div class="post row">
-                      <div class="img col-12 col-md-4">
-                          <img src="sets/img/cake.png" alt="" class="img-thumbnail" />
-                      </div>
-                      <div class="post_text col-12 col-md-8">
-                          <h3><a href="#">Кекс без глютена</a></h3>
-                          <i class="far fa-user"> Имя автора </i>
-                          <i class="far fa-calendar"> Май 10, 2022 </i>
-                          <p class="preview-text">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </p>
-                      </div>
-                  </div>
-                  <div class="post row">
-                      <div class="img col-12 col-md-4">
-                          <img src="sets/img/crois.png" alt="" class="img-thumbnail" />
-                      </div>
-                      <div class="post_text col-12 col-md-8">
-                          <h3><a href="#">Классический круасан</a></h3>
-                          <i class="far fa-user"> Имя автора </i>
-                          <i class="far fa-calendar"> Май 10, 2022 </i>
-                          <p class="preview-text">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </p>
-                      </div>
-                  </div>
-                  <div class="post row">
-                      <div class="img col-12 col-md-4">
-                          <img src="sets/img/cake.png" alt="" class="img-thumbnail" />
-                      </div>
-                      <div class="post_text col-12 col-md-8">
-                          <h3><a href="#">Вкусный домашний пирог</a></h3>
-                          <i class="far fa-user"> Имя автора </i>
-                          <i class="far fa-calendar"> Май 10, 2022 </i>
-                          <p class="preview-text">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </p>
-                      </div>
-                  </div>
+              <?php endforeach; ?>
               </div>
               <div class="sidebar col-md-3 col-12">
                   <div class="section search">
                       <h3>Поиск</h3>
-                      <form action="/" method="post">
+                      <form action="search.php" method="post">
                           <input type="text" name="search-term" class="text-input" placeholder="Поиск" />
                       </form>
                   </div>
