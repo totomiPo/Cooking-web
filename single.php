@@ -1,6 +1,7 @@
 <?php include("path.php");
-include SITE_ROOT . "/app/database/db.php";
-$post = selectOne('posts', ['id' => $_GET['post']]);
+include ("app/controls/topics.php");
+
+$post = selectPostOnSingle('posts', 'users', $_GET['post']);
 ?>
 
 
@@ -25,20 +26,17 @@ $post = selectOne('posts', ['id' => $_GET['post']]);
       <div class="container">
           <div class="content row">
               <div class="main-content col-md-9 col-12">
-                  <h2>Заголовок какой-то статьи</h2>
+                  <h2><?= $post['title'];?></h2>
                   <div class="single_post row">
                       <div class="img col-12">
-                          <img src="sets/img/cinnam.png" alt="" class="img-thumbnail" />
+                          <img src="<?= BASE_URL . "sets/img/post/" . $post['img']?>" alt="<?= $post['title']?>" class="img-thumbnail" />
                       </div>
                       <div class="info">
-                          <i class="far fa-user"> Имя автора </i>
-                          <i class="far fa-calendar"> Май 12, 2022 </i>
+                          <i class="far fa-user"> <?= $post['username']?> </i>
+                          <i class="far fa-calendar"> <?= $post['crdate']?> </i>
                       </div>
                       <div class="single_post_text col-12">
-                          <p class="preview-text">
-                              Lorem ipsum dolor sit amet, <a href="/">consectetur adipiscing</a> elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </p>
+                          <p class="preview-text"><?= $post['content']?></p>
                       </div>
                   </div>
               </div>
@@ -52,11 +50,9 @@ $post = selectOne('posts', ['id' => $_GET['post']]);
                   <div class="section topics">
                       <h3>Категории</h3>
                       <ul>
-                          <li><a href="#">Торты</a></li>
-                          <li><a href="#">Кексы</a></li>
-                          <li><a href="#">Мороженное</a></li>
-                          <li><a href="#">Пироги</a></li>
-                          <li><a href="#">Шоколад</a></li>
+                          <?php foreach ($topics as $key => $topic): ?>
+                              <li><a href="#"><?= $topic['name']; ?></a></li>
+                          <?php endforeach; ?>
                       </ul>
                   </div>
               </div>

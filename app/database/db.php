@@ -161,6 +161,7 @@ function selectALLFromPostUsersIndex($table1, $table2){
     return $query->fetchAll();
 }
 
+// Выборка топовых статей для карусели
 function selectTopTopicIndex($table1){
     global $pdo;
 
@@ -175,9 +176,9 @@ function selectTopTopicIndex($table1){
 // Поиск по заголовкам и содержимому
 function searchTitleContent($text, $table1, $table2){
     global $pdo;
-    // strip_tags -
-    // stripcslashes -
-    // htmlspecialchars -
+    // strip_tags - удаление тегов HTML
+    // stripcslashes - удаление экранируемых символов
+    // htmlspecialchars - преобразование в HTML сущности
     $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
 
     $sql = "SELECT p.*, u.username
@@ -190,4 +191,16 @@ function searchTitleContent($text, $table1, $table2){
     $query->execute();
     dbCheck($query);
     return $query->fetchAll();
+}
+
+// Получнеие статьи с имененм автора на single страницу
+function selectPostOnSingle($table1, $table2, $id){
+    global $pdo;
+
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.iduser = u.id WHERE p.id = $id";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheck($query);
+    return $query->fetch();
 }
