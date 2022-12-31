@@ -1,7 +1,6 @@
 <?php
-include ("../../path.php");
-include ("../../app/controls/comments.php");
-
+        include "../../path.php";
+        include "../../app/controls/comments.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,37 +30,38 @@ include ("../../app/controls/comments.php");
     <div class="row">
         <?php include ("../../app/include/adsidebar.php"); ?>
         <div class="posts col-9">
-            <div class="button row">
-                <a href="creat.php" class="col-3 btn btn-success">Add</a>
-                <span class="col-1"></span>
-                <a href="userindex.php" class="col-3 btn btn-warning">Manage</a>
-            </div>
-            <div class="row title">
+            <div class="row title-table">
                 <h2>Управление комментариями</h2>
-                <div class="id col-1">ID</div>
-                <div class="title col-3">Title</div>
-                <div class="author col-2">Author</div>
-                <div class="red col-2">Change</div>
-                <div class="del col-2">Delete</div>
-                <div class="status col-2">Разработка</div>
+                
+                <div class="col-1">ID</div>
+                <div class="col-5">Текст</div>
+                <div class="col-2">Автор</div>
+                <div class="col-4">Управление</div>
             </div>
-            <?php foreach ($commentsAd as $key => $comm): ?>
+            <?php foreach ($commentsForAdm as $key => $comment): ?>
                 <div class="row post">
-                    <div class="id col-1"><?=$comm['id'];?></div>
-                    <div class="title col-3"><?=mb_substr($comm['comment'], 0, 20, 'UTF-8') . "...";?></div>
-                    <div class="author col-2"><?=mb_substr($comm['email'], 0, 10, 'UTF-8') . "...";?></div>
-                    <div class="red col-2"><a href="edit.php?id=<?=$comm['id']?>">Edit</a></div>
-                    <div class="del col-2"><a href="edit.php?delid=<?=$comm['id']?>">Delete</a></div>
-                    <?php if ($comm['status']): ?>
-                        <div class="status col-2"><a href="edit.php?publish=0&pubid=<?=$comm['id']?>">Draft</a></div>
+                    <div class="id col-1"><?=$comment['id']; ?></div>
+                    <div class="title col-5"><?=mb_substr($comment['comment'], 0, 50, 'UTF-8'). '...'  ?></div>
+                    <?php
+                        $user = $comment['email'];
+                        $user = explode('@', $user);
+                        $user = $user[0];
+                    ?>
+                    <div class="author col-3"><?=$user . "@"; ?></div>
+                    <div class="red col-1"><a href="edit.php?id=<?=$comment['id'];?>">edit</a></div>
+                    <div class="del col-1"><a href="edit.php?delete_id=<?=$comment['id'];?>">delete</a></div>
+                    <?php if ($comment['status']): ?>
+                        <div class="status col-1"><a href="edit.php?publish=0&pub_id=<?=$comment['id'];?>">unpublish</a></div>
                     <?php else: ?>
-                        <div class="status col-2"><a href="edit.php?publish=1&pubid=<?=$comm['id']?>">Publish</a></div>
+                        <div class="status col-1"><a href="edit.php?publish=1&pub_id=<?=$comment['id'];?>">publish</a></div>
                     <?php endif; ?>
                 </div>
-           <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
+
+
 <!-- footer -->
 <?php include("../../app/include/footer.php"); ?>
 <!-- // footer -->

@@ -1,6 +1,8 @@
 <?php
 //include
 include SITE_ROOT . "/app/controls/comments.php";
+$page = $_GET['post'];
+$comments = selectAll('comments', ['page' => $page, 'status' => 1]);
  ?>
 
  <div class="cpl-md-12 col-12 comm">

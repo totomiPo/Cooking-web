@@ -1,9 +1,8 @@
 <?php
-//include SITE_ROOT . "/app/database/db.php";
+include_once SITE_ROOT . "/app/database/db.php";
 
-$commentsAd = selectAll('comments');
+$commentsForAdm = selectAll('comments');
 
-$page = $_GET['post'];
 $email = '';
 $comment = '';
 $err = [];
@@ -11,6 +10,7 @@ $status = 0; // Не опубликован
 $comments = [];
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
+    $page = $_GET['post'];
     $email = trim($_POST['email']);
     $comment = trim($_POST['comment']);
 
@@ -41,8 +41,56 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
 }else{
     $email = '';
     $comment = '';
-    $comments = selectAll('comments', ['page' => $page, 'status' => 1]);
+    
 
+}
+
+// Удаление комментария
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])){
+    $id = $_GET['delete_id'];
+    delete('comments', $id);
+    header('location: ' . BASE_URL . 'admin/comments/comindex.php');
+}
+
+// Статус опубликовать или снять с публикации
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])){
+    $id = $_GET['pub_id'];
+    $publish = $_GET['publish'];
+
+    $postId = update('comments', $id, ['status' => $publish]);
+
+    header('location: ' . BASE_URL . 'admin/comments/comindex.php');
+    exit();
+}
+
+
+// АПДЕЙТ СТАТЬИ
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
+    $oneComment = selectOne('comments', ['id' => $_GET['id']]);
+    $id =  $oneComment['id'];
+    $email =  $oneComment['email'];
+    $text1 = $oneComment['comment'];
+    $pub = $oneComment['status'];
+}
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_comment'])){
+    $id =  $_POST['id'];
+    $text = trim($_POST['content']);
+    $publish = isset($_POST['publish']) ? 1 : 0;
+
+    if($text === ''){
+        array_push($err, "Комментарий не имеет содержимого текста");
+    }elseif (mb_strlen($text, 'UTF8') < 50){
+        array_push($err, "Количество символов внутри комментария меньше 50");
+    }else{
+        $com = [
+            'comment' => $text,
+            'status' => $publish
+        ];
+
+        $comment = update('comments', $id, $com);
+        header('location: ' . BASE_URL . 'admin/comments/comindex.php');
+    }
 }
 
  ?>
