@@ -9,5 +9,8 @@
         <li>
             <a href="<?php echo BASE_URL . 'admin/topic/topindex.php'?>">Разделы</a>
         </li>
+        <li>
+            <a href="<?php echo BASE_URL . 'admin/comments/comindex.php'?>">Комментарии</a>
+        </li>
     </ul>
 </div>

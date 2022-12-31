@@ -1,6 +1,6 @@
 <?php
 include ("../../path.php");
-include ("../../app/controls/user.php");
+include ("../../app/controls/comments.php");
 
 ?>
 <!doctype html>
@@ -37,40 +37,28 @@ include ("../../app/controls/user.php");
                 <a href="userindex.php" class="col-3 btn btn-warning">Manage</a>
             </div>
             <div class="row title">
-                <h2>Создание пользователя</h2>
+                <h2>Управление комментариями</h2>
+                <div class="id col-1">ID</div>
+                <div class="title col-3">Title</div>
+                <div class="author col-2">Author</div>
+                <div class="red col-2">Change</div>
+                <div class="del col-2">Delete</div>
+                <div class="status col-2">Разработка</div>
             </div>
-            <div class="err col-12">
-                <?php include ("../../app/help/err.php"); ?>
-            </div>
-            <div class="row add-post">
-                <form action="creat.php" method="post">
-                    <div class="col">
-                        <label for="formGroupExampleInput" class="form-label">Login</label>
-                        <input type="text" name="login" value="<?= $login; ?>" class="form-control" id="formGroupExampleInput" placeholder="totomiPo">
-                    </div>
-                    <div class="col">
-                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" name="email"  value="<?= $email; ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="totomiPo@mail.com">
-                    </div>
-                    <div class="col">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
-                    </div>
-                    <div class="col">
-                        <label for="exampleInputPassword2" class="form-label">Confirm password</label>
-                        <input type="password" name="repass" class="form-control" id="exampleInputPassword2" placeholder="Повторите пароль">
-                    </div>
-                    <div class="form-check">
-                        <input name="admin" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Admin
-                        </label>
-                    </div>
-                    <div class="col">
-                        <button name="cruser" class="btn btn-primary" type="submit">Сохранить</button>
-                    </div>
-                </form>
-            </div>
+            <?php foreach ($commentsAd as $key => $comm): ?>
+                <div class="row post">
+                    <div class="id col-1"><?=$comm['id'];?></div>
+                    <div class="title col-3"><?=mb_substr($comm['comment'], 0, 20, 'UTF-8') . "...";?></div>
+                    <div class="author col-2"><?=mb_substr($comm['email'], 0, 10, 'UTF-8') . "...";?></div>
+                    <div class="red col-2"><a href="edit.php?id=<?=$comm['id']?>">Edit</a></div>
+                    <div class="del col-2"><a href="edit.php?delid=<?=$comm['id']?>">Delete</a></div>
+                    <?php if ($comm['status']): ?>
+                        <div class="status col-2"><a href="edit.php?publish=0&pubid=<?=$comm['id']?>">Draft</a></div>
+                    <?php else: ?>
+                        <div class="status col-2"><a href="edit.php?publish=1&pubid=<?=$comm['id']?>">Publish</a></div>
+                    <?php endif; ?>
+                </div>
+           <?php endforeach; ?>
         </div>
     </div>
 </div>

@@ -38,6 +38,7 @@ $post = selectPostOnSingle('posts', 'users', $_GET['post']);
                       <div class="single_post_text col-12">
                           <p class="preview-text"><?= $post['content']?></p>
                       </div>
+                      <?php include("app/include/comm.php"); ?>
                   </div>
               </div>
               <div class="sidebar col-md-3 col-12">

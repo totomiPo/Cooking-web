@@ -1,7 +1,7 @@
 <?php
 include SITE_ROOT . "/app/database/db.php";
 
-// Функция
+
 function auth($user){
     $_SESSION['id'] = $user['id'];
     $_SESSION['login'] = $user['username'];
