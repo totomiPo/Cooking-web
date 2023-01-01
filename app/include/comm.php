@@ -25,7 +25,7 @@ $comments = selectAll('comments', ['page' => $page, 'status' => 1]);
         <div class="row all-comments">
             <h3 class="col-12">Комментарии к записи</h3>
             <?php foreach ($comments as $comment): ?>
-                <div class="one-comment col-12">
+                <div class="one-comment col-12 mb-3">
                     <span><i class="far fa-envelope"></i> <?= $comment['email']  ?> </span>
                     <span><i class="far fa-calendar-check"></i> <?=$comment['crdate']  ?> </span>
                     <div class="col-12 text">

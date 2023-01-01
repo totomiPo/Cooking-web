@@ -34,14 +34,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['goComment'])){
             'status' => $status,
             'page' => $page
         ];
-        //tt($comment);
-        $comment = insert('comments', $comment);
-        $comments = selectAll('comments', ['page' => $page, 'status' => 1]);
+        if (empty(selectAll('comments', $comment))){
+            $comment = insert('comments', $comment);
+            $comments = selectAll('comments', ['page' => $page, 'status' => 1]);
+        }
     }
 }else{
     $email = '';
     $comment = '';
-    
+
 
 }
 
