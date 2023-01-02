@@ -10,7 +10,7 @@
                 <ul>
                     <li><a href="<?php echo BASE_URL ?>">Главная</a></li>
                     <li><a href="<?php echo BASE_URL . 'about_us.php'?>">О нас</a></li>
-                    <li><a href="#">Услуги</a></li>
+                    <li><a href="<?php echo BASE_URL . 'servis.php'?>">Услуги</a></li>
                     <li>
                         <?php if(isset($_SESSION['id'])): ?>
                             <a href="#"><?php echo $_SESSION['login']; ?></a>

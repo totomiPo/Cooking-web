@@ -24,22 +24,12 @@ include ("app/controls/topics.php");
       <div class="container">
           <div class="content row">
               <div class="main-content col-md-9 col-12">
-                  <h2>Готовую булочку не испечь заново</h2>
-                  <div class="single_post row">
-                      <div class="img col-12">
-                          <img src="sets/img/cafe.jpg" alt="" class="img-thumbnail" style="width: 80%;" />
-                      </div>
-                      <div class="single_post_text col-12">
-                          <p class="preview-text">
-                              Этот сайт поможет найти вам подходящие рецепты выпечки, мороженного и шоколадных изделий.
-                              Также вы сможете познакомиться с расположением различных булочных в вашем городе.
-                          </p>
-                          <p class="preview-text">
-                              Если вы захотите приготовить дома очень вкусный кекс или классический круасан, как во Франции, то наши
-                              рецепты из каталога вам помогут. Все рецепты из доступных продуктов, дерзайте!
-                          </p>
-                      </div>
+                  <h2>Наши булочные в Санкт-Петербурге</h2>
+
+                  <div id="map" class="map">
+                      <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
                   </div>
+
               </div>
               <div class="sidebar col-md-3 col-12">
                   <div class="section search">
@@ -64,6 +54,8 @@ include ("app/controls/topics.php");
 
       <!-- Footer -->
       <?php include("app/include/footer.php"); ?>
+
+      <script src="sets/js/scriptmap.js"></script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
