@@ -10,7 +10,7 @@ function auth($user){
     if($_SESSION['admin']){
         header('location: ' . BASE_URL . "admin/posts/adindex.php");
     }else{
-        header('location: ' . BASE_URL);
+        header('location: ' . BASE_URL . "user/posts/adindex.php");
     }
 }
 

@@ -15,6 +15,9 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo BASE_URL . "index.php"; ?>">Главная</a>
+                    </li>
+                    <li>
                         <a href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a>
                     </li>
                 </ul>

@@ -16,7 +16,10 @@
                             <a href="#"><?php echo $_SESSION['login']; ?></a>
                             <ul>
                                 <?php if($_SESSION['admin']): ?>
-                                    <li><a href="<?php echo BASE_URL . 'admin/posts/adindex.php'?>">Админ</a></li>
+                                    <li><a href="<?php echo BASE_URL . 'admin/posts/adindex.php'?>">Админ-панель</a></li>
+                                <?php endif;?>
+                                <?php if(!($_SESSION['admin'])): ?>
+                                    <li><a href="<?php echo BASE_URL . 'user/posts/adindex.php'?>">Личный кабинет</a></li>
                                 <?php endif;?>
                                 <li><a href="<?php echo BASE_URL . 'logout.php'?>">Выход</a></li>
                             </ul>
