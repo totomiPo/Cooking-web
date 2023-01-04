@@ -89,16 +89,21 @@
 | **discr** | TEXT |  | NO | Описание категории |
 
 #### 5. Алгоритм
-**Добавление поста** 
+**Добавление поста**  
 ![Добавление](https://github.com/totomiPo/Cooking-web/blob/main/Добавление.jpg)  
-**Изменение поста** 
+
+**Изменение поста**  
 ![Изменение](https://github.com/totomiPo/Cooking-web/blob/main/Изменение.jpg)  
-**Комментирование**  
-![Комментирование](https://github.com/totomiPo/Cooking-web/blob/main/Комментирование.jpg)  
+
+**Комментирование**   
+![Комментирование](https://github.com/totomiPo/Cooking-web/blob/main/Комментирование.jpg)   
+
 **Регистрация**  
 ![Регистрация](https://github.com/totomiPo/Cooking-web/blob/main/Регистрация.jpg)  
+
 **Вход**  
 ![Вход](https://github.com/totomiPo/Cooking-web/blob/main/Вход.jpg)  
+
 
 #### 6. Значимые фрагменты кода
 
