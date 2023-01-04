@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addpost'])){
         $imgtype = $_FILES['img']['type'];
         $tmpf = $_FILES['img']['tmp_name'];
         $destin = ROOT_PATH . "\sets\img\post\\" . $imgname;
-
+        // $destin = SITE_ROOT . "/sets/img/post//" . $imgname;
         if (strpos($imgtype, 'image') === false){
             array_push($err, "Файл не является изображением");
         } else {
