@@ -47,6 +47,8 @@
 
 #### 3. API сервера и хореография
 
+![Хореография](https://github.com/totomiPo/Cooking-web/blob/main/Хореография.png)
+
 #### 4. Структура базы данных
 
  Таблица *posts*
